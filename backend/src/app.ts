@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
+import feedbackRouter from "./routes/feedback.routes";
+
 const app = express();
 
 app.use(express.json());
@@ -21,6 +23,8 @@ app.post("/name", (req: Request, res: Response) => {
   }
   res.status(200).send({ message: `Hello ${name}!` });
 })
+
+app.use("/feedback", feedbackRouter);
 
 const port = process.env.PORT || 3000;
 
