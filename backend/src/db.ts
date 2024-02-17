@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const connectionString = "mongodb://localhost:27017/feedbacks"
+const connectionString = "mongodb://feedback-db:27017/feedbacks"
 
 export const connectDb = async () => {
   try {

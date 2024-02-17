@@ -1,32 +1,33 @@
 version: "3.8"
 
 services:
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: express-container
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     NODE_ENV: production
-  #   depends_on:
-  #     - mongodb
-  #   networks:
-  #     - app-network
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - app-network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: feedback-backend
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - feedback-db
+    networks:
+      - app-network
 
-  mongodb:
-    image: mongo:latest
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: feedback-frontend
     ports:
-      - "27017:27017"
+      - "3000:80"
+    networks:
+      - app-network
+
+  feedback-db:
+    image: mongo:latest
+    networks:
+      - app-network
+    container_name: feedback-db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example

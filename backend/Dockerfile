@@ -1,4 +1,4 @@
-# Use the official Node.js 14 image as the base image
+# Use the official Node.js image as the base image
 FROM node:18
 
 # Set the working directory
@@ -14,10 +14,10 @@ RUN yarn install
 COPY . .
 
 # Build the TypeScript code
-RUN npm run build
+RUN yarn build
 
 # Expose port 3000
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

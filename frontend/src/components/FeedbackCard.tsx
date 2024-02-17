@@ -5,7 +5,7 @@ type Props = {
   message: string;
 };
 
-const FeedbackCard = (props: Props) => {
+const FeedbackCard = (_: Props) => {
   return <div>FeedbackCard</div>;
 };
 

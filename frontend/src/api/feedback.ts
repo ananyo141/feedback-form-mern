@@ -1,13 +1,4 @@
-import axios from "axios";
-
-const baseUrl = "http://localhost:3000/";
-
-const apiClient = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import apiClient from "./apiClient";
 
 const getFeedbacks = async () => {
   return apiClient.get("/feedback");
