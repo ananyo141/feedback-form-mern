@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { feedbackApi } from "../api/feedback";
+import { Link } from "react-router-dom";
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
@@ -135,7 +136,12 @@ const FeedbackForm = () => {
               }}
               className="mt-4 bg-red-500 p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300"
             >
-              <a className="text-white hover:text-yellow-500 active:text-green-500" href="/showfeedbacks">Show Feedbacks</a>
+              <Link
+                className="text-white hover:text-yellow-500 active:text-green-500"
+                to="/showfeedbacks"
+              >
+                Show Feedbacks
+              </Link>
             </button>
           </div>
         </form>
