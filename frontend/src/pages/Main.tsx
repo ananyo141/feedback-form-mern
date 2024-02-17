@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { feedbackApi } from "../api/feedback";
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     rating: "",
-    feedback: "",
+    message: "",
   });
 
   const handleChange = (e: any) => {
@@ -17,6 +19,18 @@ const FeedbackForm = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    try {
+      feedbackApi.createFeedback(formData);
+      toast.success("Feedback submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        rating: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.log("Error submitting feedback:", error.message);
+    }
     // Handle form submission (e.g., send data to the server)
     console.log("Form submitted:", formData);
   };
@@ -94,26 +108,36 @@ const FeedbackForm = () => {
             <option value="poor">Poor</option>
           </select>
           <label
-            htmlFor="feedback"
+            htmlFor="message"
             className="block text-sm font-medium text-gray-600"
           >
             Feedback
           </label>
           <textarea
-            id="feedback"
-            name="feedback"
-            value={formData.feedback}
+            id="message"
+            name="message"
+            value={formData.message}
             onChange={handleChange}
             rows={4}
             className="mt-1 p-2 w-full border rounded-md"
             required
           ></textarea>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-          >
-            Submit Feedback
-          </button>
+          <div>
+            <button
+              type="submit"
+              className="bg-blue-500 mr-2 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+            >
+              Submit Feedback
+            </button>
+            <button
+              onClick={() => {
+                console.log("Clicked");
+              }}
+              className="mt-4 bg-red-500 p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-300"
+            >
+              <a className="text-white hover:text-yellow-500 active:text-green-500" href="/showfeedbacks">Show Feedbacks</a>
+            </button>
+          </div>
         </form>
       </div>
     </main>
