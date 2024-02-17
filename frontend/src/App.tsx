@@ -36,7 +36,7 @@ const FeedbackForm = () => {
       }}
       className="flex flex-col min-h-screen border bg-blue-50 h-full justify-center items-center min-w-fit w-screen"
     >
-      <div className="max-w-md opacity-80 backdrop-blur-3xl mt-8 p-6 bg-white rounded-md shadow-md">
+      <div className="max-w-md opacity-80 dark:bg-gray-900 backdrop-blur-3xl mt-8 p-6 bg-white rounded-md shadow-md">
         <h2 className="text-2xl text-red-500 font-semibold mb-4">
           School Trip Feedback Form
         </h2>
