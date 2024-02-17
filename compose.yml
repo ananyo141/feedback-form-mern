@@ -6,6 +6,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: feedback-backend
+    ports:
+      - "3000:3000"
     environment:
       NODE_ENV: production
     depends_on:
@@ -19,7 +21,7 @@ services:
       dockerfile: Dockerfile
     container_name: feedback-frontend
     ports:
-      - "3000:80"
+      - "8000:80"
     networks:
       - app-network
 
@@ -28,9 +30,6 @@ services:
     networks:
       - app-network
     container_name: feedback-db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
 
 networks:
   app-network:
